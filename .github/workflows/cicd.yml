@@ -13,8 +13,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}     
       - name: Build Docker Image
-        run: docker build -t sergio7174/reactnotescrud-backend .
+        run: docker build -t sergio7174/reactnotescrud-backend 
       - name: Publish Image to docker hub
         run: docker push sergio7174/reactnotescrud-backend
  
- 
+  deploy:
+    needs: build
+    runs-on: self-hosted 
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull sergio7174/reactnotescrud-backend:latest
+      - name: Delete old container
+        run: docker rm -f reactnotescrud-backend-container 
+      - name: Run Docker Container
+        run: docker run -d -p 5555:5555 --name reactnotescrud-backend-container -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactnotescrud-backend
