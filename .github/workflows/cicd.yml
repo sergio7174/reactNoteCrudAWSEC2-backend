@@ -2,7 +2,7 @@ name: Deploy React Notes Crud
 on: 
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
