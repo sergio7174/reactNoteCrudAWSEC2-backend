@@ -17,7 +17,6 @@ jobs:
       - name: Publish Image to docker hub
         run: docker push sergio7174/reactnotescrud-backend
  
- 
   deploy:
     needs: build
     runs-on: self-hosted 
@@ -27,4 +26,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f reactnotescrud-backend-container 
       - name: Run Docker Container
-        run: docker run -d -p 5555:5555 --name reactnotescrud-backend-container -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactNoteCrudAWSEC2-backend 
+        run: docker run -d -p 5555:5555 --name reactnotescrud-backend-container -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactnotescrud-backend 
