@@ -1,7 +1,7 @@
 {
   "name": "serverafs",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "React Notes Crud web",
   "main": "server.js",
   "scripts": {
