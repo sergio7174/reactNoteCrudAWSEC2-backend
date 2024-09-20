@@ -20,6 +20,8 @@ jobs:
     needs: build
     runs-on: self-hosted 
     steps:
+      - name: file permission
+        run: sudo chmod 666 /var/run/docker.sock
       - name: Pull image from docker hub
         run: docker pull sergio7174/reactnotescrud-backend:latest
       - name: Delete old container
